@@ -2,6 +2,7 @@ export function EventsNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
+    params.append("child_id", props.childId);
     props.onCreateEvent(params, () => event.target.reset());
   };
 

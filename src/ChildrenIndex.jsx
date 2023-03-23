@@ -6,6 +6,7 @@ export function ChildrenIndex(props) {
         <div key={child.id}>
           <h2>{child.name}</h2>
           <img src={child.image} />
+          <button onClick={() => props.onShowChild(child)}>More Info</button>
         </div>
       ))}
     </div>
