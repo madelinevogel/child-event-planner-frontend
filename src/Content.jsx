@@ -5,11 +5,14 @@ import { ChildrenNew } from "./ChildrenNew";
 import { Modal } from "./Modal";
 import { Login } from "./Login";
 import { ChildrenShow } from "./ChildrenShow";
+import { Calendar } from "react-calendar";
+import { Header } from "./Header";
 
 export function Content() {
   const [children, setChildren] = useState([]);
   const [isChildrenShowVisible, setIsChildrenShowVisible] = useState(false);
   const [currentChild, setCurrentChild] = useState({});
+  // const [value, onChange] = useState(new Date());
 
   const handleIndexChildren = () => {
     console.log("handleIndexChildren");
@@ -58,7 +61,7 @@ export function Content() {
   useEffect(handleIndexChildren, []);
 
   return (
-    <div>
+    <div className="container">
       <Login />
       <ChildrenNew onCreateChild={handleCreateChild} />
       <ChildrenIndex children={children} onShowChild={handleShowChild} />
