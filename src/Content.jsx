@@ -5,14 +5,13 @@ import { ChildrenNew } from "./ChildrenNew";
 import { Modal } from "./Modal";
 import { Login } from "./Login";
 import { ChildrenShow } from "./ChildrenShow";
-import { Calendar } from "react-calendar";
-import { Header } from "./Header";
+import { Signup } from "./Signup";
+import { Route, Routes } from "react-router-dom";
 
 export function Content() {
   const [children, setChildren] = useState([]);
   const [isChildrenShowVisible, setIsChildrenShowVisible] = useState(false);
   const [currentChild, setCurrentChild] = useState({});
-  // const [value, onChange] = useState(new Date());
 
   const handleIndexChildren = () => {
     console.log("handleIndexChildren");
@@ -61,13 +60,25 @@ export function Content() {
   useEffect(handleIndexChildren, []);
 
   return (
-    <div className="container">
-      <Login />
-      <ChildrenNew onCreateChild={handleCreateChild} />
-      <ChildrenIndex children={children} onShowChild={handleShowChild} />
-      <Modal show={isChildrenShowVisible} onClose={handleClose}>
-        <ChildrenShow child={currentChild} onCreateEvent={handleCreateEvent} />
-      </Modal>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/addchild" element={<ChildrenNew onCreateChild={handleCreateChild} />} />
+        <Route
+          path="/children"
+          element={
+            <ChildrenIndex
+              children={children}
+              show={isChildrenShowVisible}
+              onClose={handleClose}
+              child={currentChild}
+              onCreateEvent={handleCreateEvent}
+              onShowChild={handleShowChild}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
